@@ -3,8 +3,7 @@ a = float(input("Nhap a: "))
 while a == 0:
     print("Không được nhập a = 0")
     a = float(input("Nhap a khác 0 : "))
-
-
+# abc
 
 b = float(input("Nhap b: "))
 c = float(input("Nhap c: "))
