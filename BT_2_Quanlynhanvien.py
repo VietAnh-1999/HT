@@ -72,7 +72,7 @@ while True:
     if i == "In":
         NhapNhanVien = NhanVien()
         NhapNhanVien.inputInfo(danh_sach_nv)
-        danh_sach_nv.append(NhapNhanVien)
+        danh_sach_nv.append(NhapNhanVien.get_ma_nhan_vien())
 
         NhapNhanVien.printInfo(NhapNhanVien.get_ma_nhan_vien())
         # Viet du lieu vao file txt
@@ -82,4 +82,5 @@ while True:
 
     elif i == "Exit":
         break
-#test github
+    elif i == '1' :
+        print(danh_sach_nv)
