@@ -1,4 +1,5 @@
 #Khai bao class 
+#  day la main
 class NhanVien:
 
     def __init__(self):
