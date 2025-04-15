@@ -97,8 +97,8 @@ def xuatdulieura_TXT():
 #Tuy xuat thong tin nhan vien
 def truyxuatthongtin_NV():
     print("nhap '-1' de thoat")
+    print("*"*60)
     while True:
-        print("*"*60)
         ma_nv = input("Nhap vao ma nhan vien can truy xuat: ")
         if any(nv.get_ma_nhan_vien () == ma_nv for nv in danh_sach_nv ):
             for nv in danh_sach_nv:
