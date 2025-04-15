@@ -1,4 +1,5 @@
 #Khai bao class 
+import json
 class NhanVien:
 
     def __init__(self):
@@ -14,14 +15,14 @@ class NhanVien:
 
     # phuong thuc
     def inputInfo(self,danh_sach_nv):
-            # cwhile True:
-            ma = input("Nhap vao ma nhan vien:  ")
-                # if any(for ma in danh_sach_nv ):
-                #     print("Max nhan vien da ton tai! Vui long nhap lai ma nhan vien khac")
-                # else:
-            self.__ma_nhan_vien = ma
-                    # break
-       
+            while True:
+                ma = input("Nhap vao ma nhan vien:  ")
+                if any(nv.get_ma_nhan_vien () == ma for nv in danh_sach_nv ):
+                        print("Max nhan vien da ton tai! Vui long nhap lai ma nhan vien khac")
+                else:
+                    self.__ma_nhan_vien = ma
+                    break
+        
             self.ten = input("Nhap vao ten nhan vien co ma nhan vien {}: ".format(self.__ma_nhan_vien))
             while True:
                 try:
@@ -82,16 +83,19 @@ class NhanVien:
 #main***********************************************************************************************************************************
 danh_sach_nv = []
 NhapNhanVien = NhanVien()
-try:
-    with open("nhanvien.txt","r", encoding= "utf-8") as f:
-        for line in f:
-            nv =  NhanVien.from_string(line)
-            if nv is not None:
-                danh_sach_nv.append(nv)
-    print("da doc danh sach tu file")
-except FileNotFoundError:
-    print("File khong ton tai")
-    
+def xuatdulieura_TXT():
+    try:
+        with open("nhanvien.txt","r", encoding= "utf-8") as f:
+            for line in f:
+                nv =  NhanVien.from_string(line)
+                if nv is not None:
+                    danh_sach_nv.append(nv)
+        print("da doc danh sach tu file")
+    except FileNotFoundError:
+        print("File khong ton tai")
+
+xuatdulieura_TXT()
+
 if danh_sach_nv:
     print("== Danh sách nhân viên đã đọc từ file ==")
     for nv in danh_sach_nv:
@@ -103,11 +107,20 @@ while True:
     if i == "In":
         NhapNhanVien = NhanVien()
         NhapNhanVien.inputInfo(danh_sach_nv)
-        NhapNhanVien.printInfo(NhapNhanVien.get_ma_nhan_vien())
+        NhapNhanVien.printInfo()
         # Viet du lieu vao file txt
         with open("nhanvien.txt", "a", encoding="utf-8") as f:
             f.write(NhapNhanVien.to_string() + "\n")
             print("Da gui du lieu vao file thanh cong")
-
+        xuatdulieura_TXT()
     elif i == "Exit":
         break
+
+# with open("ds.json", 'r', encoding='utf-8') as f:
+#     data = json.load(f)
+
+# print(data[0]["manv"])
+
+# with open("nhanvien.json", "a", encoding="utf-8") as f:
+#         # f.write(sdata)
+#         sdata=json.dump(data,f, ensure_ascii=False, indent=4)
