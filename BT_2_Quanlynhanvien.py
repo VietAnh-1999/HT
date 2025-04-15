@@ -83,6 +83,7 @@ class NhanVien:
 #main***********************************************************************************************************************************
 danh_sach_nv = []
 NhapNhanVien = NhanVien()
+#Doc du lieu tu file
 def xuatdulieura_TXT():
     try:
         with open("nhanvien.txt","r", encoding= "utf-8") as f:
@@ -93,14 +94,30 @@ def xuatdulieura_TXT():
         print("da doc danh sach tu file")
     except FileNotFoundError:
         print("File khong ton tai")
+#Tuy xuat thong tin nhan vien
+def truyxuatthongtin_NV():
+    print("nhap '-1' de thoat")
+    while True:
+        print("*"*60)
+        ma_nv = input("Nhap vao ma nhan vien can truy xuat: ")
+        if any(nv.get_ma_nhan_vien () == ma_nv for nv in danh_sach_nv ):
+            for nv in danh_sach_nv:
+                if nv.get_ma_nhan_vien() == ma_nv:
+                    nv.printInfo()
+                    print("*"*60)
+        elif ma_nv == '-1':
+            break
+        else:
+            print("Ma khong ton tai!")
 
 xuatdulieura_TXT()
-
+# In danh sach
 if danh_sach_nv:
     print("== Danh sách nhân viên đã đọc từ file ==")
     for nv in danh_sach_nv:
         nv.printInfo()
         print("-" * 40)
+
 
 while True:
     i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
@@ -115,6 +132,9 @@ while True:
         xuatdulieura_TXT()
     elif i == "Exit":
         break
+    elif i== 'A':
+        truyxuatthongtin_NV()
+        
 
 # with open("ds.json", 'r', encoding='utf-8') as f:
 #     data = json.load(f)
