@@ -1,7 +1,4 @@
 #Khai bao class 
-# day la branch test
-# test2
-#  day la main
 class NhanVien:
 
     def __init__(self):
@@ -17,13 +14,13 @@ class NhanVien:
 
     # phuong thuc
     def inputInfo(self,danh_sach_nv):
-            while True:
-                ma = input("Nhap vao ma nhan vien:  ")
-                if ma in danh_sach_nv:
-                    print("Max nhan vien da ton tai! Vui long nhap lai ma nhan vien khac")
-                else:
-                    self.__ma_nhan_vien = ma
-                    break
+            # cwhile True:
+            ma = input("Nhap vao ma nhan vien:  ")
+                # if any(for ma in danh_sach_nv ):
+                #     print("Max nhan vien da ton tai! Vui long nhap lai ma nhan vien khac")
+                # else:
+            self.__ma_nhan_vien = ma
+                    # break
        
             self.ten = input("Nhap vao ten nhan vien co ma nhan vien {}: ".format(self.__ma_nhan_vien))
             while True:
@@ -47,7 +44,7 @@ class NhanVien:
                     print("Ban phai nhap gio lam la mot so")
      
         
-    def printInfo(self,manhanvien):
+    def printInfo(self):
         print("Mã nhân viên:", self.__ma_nhan_vien)
         print("Tên:", self.ten)
         print("Tuổi:", self.tuoi)
@@ -66,17 +63,46 @@ class NhanVien:
     # tra ve chuoi
     def to_string(self):
         return f"{self.__ma_nhan_vien},{self.ten},{self.tuoi},{self.dia_chi},{self.luong},{self.gio_lam},{self.tinhThuong()}"
+    
+    @staticmethod
+    def from_string(data_str):
+        part = data_str.strip().split(",")
+        if len(part)>= 6:
+            nv = NhanVien()
+            nv.__ma_nhan_vien = part[0]
+            nv.ten =part[1]
+            nv.tuoi =int(part[2])
+            nv.dia_chi = part[3]
+            nv.luong = float(part[4])
+            nv.gio_lam = float(part[5])
+            return nv
+        else:
+            return None
 
 #main***********************************************************************************************************************************
 danh_sach_nv = []
+NhapNhanVien = NhanVien()
+try:
+    with open("nhanvien.txt","r", encoding= "utf-8") as f:
+        for line in f:
+            nv =  NhanVien.from_string(line)
+            if nv is not None:
+                danh_sach_nv.append(nv)
+    print("da doc danh sach tu file")
+except FileNotFoundError:
+    print("File khong ton tai")
+    
+if danh_sach_nv:
+    print("== Danh sách nhân viên đã đọc từ file ==")
+    for nv in danh_sach_nv:
+        nv.printInfo()
+        print("-" * 40)
 
 while True:
     i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
     if i == "In":
         NhapNhanVien = NhanVien()
         NhapNhanVien.inputInfo(danh_sach_nv)
-        danh_sach_nv.append(NhapNhanVien)
-
         NhapNhanVien.printInfo(NhapNhanVien.get_ma_nhan_vien())
         # Viet du lieu vao file txt
         with open("nhanvien.txt", "a", encoding="utf-8") as f:
