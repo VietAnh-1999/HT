@@ -1,22 +1,30 @@
 [
-    [
-      {
-        "ma_nhan_vien": "Va001",
-        "ten": "VA",
-        "tuoi": 26,
-        "dia_chi": "HAN",
-        "luong": 2666,
-        "gio_lam": 3232
-      }
-    ],
-    [
-      {
-        "ma_nhan_vien": "VA656",
-        "ten": "Anh",
-        "tuoi": 26,
-        "dia_chi": "ghf",
-        "luong": 6654,
-        "gio_lam": 121
-      }
-    ]
-  ]
+    
+        {
+            "ma_nhan_vien": "Va001",
+            "ten": "VA",
+            "tuoi": 26,
+            "dia_chi": "HAN",
+            "luong": 2666,
+            "gio_lam": 3232
+        }
+    ,
+    
+        {
+            "ma_nhan_vien": "VA656",
+            "ten": "Anh",
+            "tuoi": 26,
+            "dia_chi": "ghf",
+            "luong": 6654,
+            "gio_lam": 121
+        }
+    ,
+    {
+        "ma_nhan_vien": "dfdfg",
+        "ten": "ffg",
+        "tuoi": 232,
+        "dia_chi": "dgfdd",
+        "luong": 23.0,
+        "gio_lam": 3232.0
+    }
+]

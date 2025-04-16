@@ -99,6 +99,7 @@ def doc_Json():
             data = json.load(f)
             print(data)
         print("da doc danh sach tu file json")
+        return data
     except FileNotFoundError:
         print("File khong ton tai")
     except json.JSONDecodeError:
@@ -122,7 +123,7 @@ def doc_Json():
 #             print("Ma khong ton tai!")
 
 
-doc_Json()
+data=doc_Json()
 while True:
     i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
     if i == "In":
@@ -130,8 +131,10 @@ while True:
         NhapNhanVien.inputInfo(danh_sach_nv)
         NhapNhanVien.printInfo()
         # Viet du lieu vao file txt
+        data.append(NhapNhanVien.to_dict())
+
         with open("nhanvien.json", "w", encoding="utf-8") as f:
-            json.dump([ NhapNhanVien.to_dict()],f,indent=4)
+            json.dump(data,f,indent=4)
             print("Da gui du lieu vao file thanh cong")
 
     elif i == "Exit":
