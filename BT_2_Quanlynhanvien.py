@@ -130,8 +130,8 @@ while True:
         NhapNhanVien.inputInfo(danh_sach_nv)
         NhapNhanVien.printInfo()
         # Viet du lieu vao file txt
-        with open("nhanvien.json", "a", encoding="utf-8") as f:
-            json.dump(',' + [ NhapNhanVien.to_dict()],f,indent=4)
+        with open("nhanvien.json", "w", encoding="utf-8") as f:
+            json.dump([ NhapNhanVien.to_dict()],f,indent=4)
             print("Da gui du lieu vao file thanh cong")
 
     elif i == "Exit":
