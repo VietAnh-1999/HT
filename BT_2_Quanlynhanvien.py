@@ -120,7 +120,7 @@ if danh_sach_nv:
 
 
 while True:
-    i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
+    i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat\nNhap vao 'Truy' de tra thong tin nhan vien ")
     if i == "In":
         NhapNhanVien = NhanVien()
         NhapNhanVien.inputInfo(danh_sach_nv)
@@ -132,7 +132,7 @@ while True:
         xuatdulieura_TXT()
     elif i == "Exit":
         break
-    elif i== 'A':
+    elif i== 'Truy':
         truyxuatthongtin_NV()
         
 
