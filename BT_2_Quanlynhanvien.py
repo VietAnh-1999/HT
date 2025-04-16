@@ -129,6 +129,7 @@ while True:
     if i == "In":
         NhapNhanVien = NhanVien()
         NhapNhanVien.inputInfo(danh_sach_nv)
+        danh_sach_nv.append(NhapNhanVien)
         NhapNhanVien.printInfo()
         # Viet du lieu vao file txt
         data.append(NhapNhanVien.to_dict())
@@ -139,7 +140,6 @@ while True:
 
     elif i == "Exit":
         break
-    doc_Json()
     # elif i== 'A':
     #     truyxuatthongtin_NV()
         
