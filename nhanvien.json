@@ -1,12 +1,22 @@
 [
-    {
-        "manv": "VA01",
-        "name": "VietAnh",
-        "age": 26
-    },
-    {
-        "manv": "VA02",
-        "name": "VietAnh2",
-        "age": 26
-    }
-]
+    [
+      {
+        "ma_nhan_vien": "Va001",
+        "ten": "VA",
+        "tuoi": 26,
+        "dia_chi": "HAN",
+        "luong": 2666,
+        "gio_lam": 3232
+      }
+    ],
+    [
+      {
+        "ma_nhan_vien": "VA656",
+        "ten": "Anh",
+        "tuoi": 26,
+        "dia_chi": "ghf",
+        "luong": 6654,
+        "gio_lam": 121
+      }
+    ]
+  ]

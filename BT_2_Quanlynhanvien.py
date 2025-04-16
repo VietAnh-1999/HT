@@ -1,4 +1,6 @@
 #Khai bao class 
+#Branch Json
+
 import json
 class NhanVien:
 
@@ -64,61 +66,63 @@ class NhanVien:
     # tra ve chuoi
     def to_string(self):
         return f"{self.__ma_nhan_vien},{self.ten},{self.tuoi},{self.dia_chi},{self.luong},{self.gio_lam},{self.tinhThuong()}"
-    
+    # tra ve dang dict  de chuyen sang json
+    def to_dict(self):
+        return{
+            "ma_nhan_vien": self.__ma_nhan_vien,
+            "ten":self.ten,
+            "tuoi":self.tuoi,
+            "dia_chi":self.dia_chi,
+            "luong":self.luong,
+            "gio_lam":self.gio_lam,
+            
+        }
+# doc data theo dinh dang json
     @staticmethod
-    def from_string(data_str):
-        part = data_str.strip().split(",")
-        if len(part)>= 6:
+    def from_dict(data):
             nv = NhanVien()
-            nv.__ma_nhan_vien = part[0]
-            nv.ten =part[1]
-            nv.tuoi =int(part[2])
-            nv.dia_chi = part[3]
-            nv.luong = float(part[4])
-            nv.gio_lam = float(part[5])
+            nv.__ma_nhan_vien = data["ma_nhan_vien"]
+            nv.ten = data["ten"]
+            nv.tuoi = data["tuoi"]
+            nv.dia_chi = data["dia_chi"]
+            nv.luong = data["luong"]
+            nv.gio_lam =data["gio_lam"]
             return nv
-        else:
-            return None
 
 #main***********************************************************************************************************************************
 danh_sach_nv = []
 NhapNhanVien = NhanVien()
 #Doc du lieu tu file
-def xuatdulieura_TXT():
+def doc_Json():
     try:
-        with open("nhanvien.txt","r", encoding= "utf-8") as f:
-            for line in f:
-                nv =  NhanVien.from_string(line)
-                if nv is not None:
-                    danh_sach_nv.append(nv)
-        print("da doc danh sach tu file")
+        with open("nhanvien.json","r", encoding= "utf-8") as f:
+            data = json.load(f)
+            print(data)
+        print("da doc danh sach tu file json")
     except FileNotFoundError:
         print("File khong ton tai")
+    except json.JSONDecodeError:
+        print("File JSON bi loi hoac rong")
+
+
 #Tuy xuat thong tin nhan vien
-def truyxuatthongtin_NV():
-    print("nhap '-1' de thoat")
-    print("*"*60)
-    while True:
-        ma_nv = input("Nhap vao ma nhan vien can truy xuat: ")
-        if any(nv.get_ma_nhan_vien () == ma_nv for nv in danh_sach_nv ):
-            for nv in danh_sach_nv:
-                if nv.get_ma_nhan_vien() == ma_nv:
-                    nv.printInfo()
-                    print("*"*60)
-        elif ma_nv == '-1':
-            break
-        else:
-            print("Ma khong ton tai!")
-
-xuatdulieura_TXT()
-# In danh sach
-if danh_sach_nv:
-    print("== Danh sách nhân viên đã đọc từ file ==")
-    for nv in danh_sach_nv:
-        nv.printInfo()
-        print("-" * 40)
+# def truyxuatthongtin_NV():
+#     print("nhap '-1' de thoat")
+#     print("*"*60)
+#     while True:
+#         ma_nv = input("Nhap vao ma nhan vien can truy xuat: ")
+#         if any(nv.get_ma_nhan_vien () == ma_nv for nv in danh_sach_nv ):
+#             for nv in danh_sach_nv:
+#                 if nv.get_ma_nhan_vien() == ma_nv:
+#                     nv.printInfo()
+#                     print("*"*60)
+#         elif ma_nv == '-1':
+#             break
+#         else:
+#             print("Ma khong ton tai!")
 
 
+doc_Json()
 while True:
     i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
     if i == "In":
@@ -126,21 +130,14 @@ while True:
         NhapNhanVien.inputInfo(danh_sach_nv)
         NhapNhanVien.printInfo()
         # Viet du lieu vao file txt
-        with open("nhanvien.txt", "a", encoding="utf-8") as f:
-            f.write(NhapNhanVien.to_string() + "\n")
+        with open("nhanvien.json", "a", encoding="utf-8") as f:
+            json.dump(',' + [ NhapNhanVien.to_dict()],f,indent=4)
             print("Da gui du lieu vao file thanh cong")
-        xuatdulieura_TXT()
+
     elif i == "Exit":
         break
-    elif i== 'A':
-        truyxuatthongtin_NV()
+    doc_Json()
+    # elif i== 'A':
+    #     truyxuatthongtin_NV()
         
 
-# with open("ds.json", 'r', encoding='utf-8') as f:
-#     data = json.load(f)
-
-# print(data[0]["manv"])
-
-# with open("nhanvien.json", "a", encoding="utf-8") as f:
-#         # f.write(sdata)
-#         sdata=json.dump(data,f, ensure_ascii=False, indent=4)
