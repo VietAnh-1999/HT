@@ -34,12 +34,15 @@ class Student:
             else:
                 print("vui long nhap diem cho hoc sinh tu 0.0 --->10 !")
         while True:
-            tuoi = int(input('Nhap vao tuoi cua sinh vien co "id": {} : '.format(self._id) ))
-            if tuoi >= 18:
-                self.tuoi = tuoi
-                break
-            else:
-                print("vui long nhap tuoi cho hoc sinh lon hon 18!")
+            try:
+                tuoi = int(input('Nhap vao tuoi cua sinh vien co "id": {} : '.format(self._id) ))
+                if tuoi >= 18:
+                    self.tuoi = tuoi
+                    break
+                else:
+                    print("vui long nhap tuoi cho hoc sinh lon hon 18!")
+            except:
+                print("Khong dung dinh dang ! Phai nhap so nguyen")
         while True:
             lop = input("nhap vao ten lop cho hoc sinh\n(Ten lop bat dau bang 'A' hoac 'C'): ")
             if lop[0] == 'A' or lop[0] == 'C':
@@ -80,21 +83,21 @@ class Student:
         nv.diem_trung_binh = Json_data["score"]
         nv.tuoi = Json_data["age"]
         nv.lop = Json_data["class"]
+        return nv
 # main *************************************************************************************************************************************************************************
 Hocsinh = Student()
-data = []
+#doc data tu file Json
 def read_data():
     try:
         with open("dulieuhs.json","r",encoding= "utf-8") as f:
             data = json.load(f)
-            return data
-        print("Da doc duoc du lieu")
+            return data        
     except FileNotFoundError:
         print("File khong ton tai")
     except json.JSONDecodeError:
         print("File json rong hoac khong ton tai")
     
-
+#input data vao file Json
 def input_data():
     Hocsinh.inputInfo()
     Hocsinh.showInfo()
@@ -102,31 +105,42 @@ def input_data():
     with open("dulieuhs.json","w",encoding= "utf-8") as f:
         json.dump(data,f,indent=4)
         print("Da xuat du lieu ra file json")
-
-#def del_data():
-def student_search():
-    read_data()
-    id_student_search = input("Hay nhap vao 'id' cua sinh vien can tra")
-    if any(HS["id"] == id_student_search for HS in data ):
-        for HS in data:
-            if HS["id"] == id_student_search:
-                HS_obj = Student.from_dict(HS)
-                HS_obj.showInfo()
-
-
-    
+#del du lieu file json
+def del_data():
+    id_del = input("Nhap vao Id can xoa: ")
+    data_new = [sv for sv in data if sv["id"] != id_del]
+    with open("dulieuhs.json","w",encoding= "utf-8") as f:
+        json.dump(data_new,f,indent=4)
+        print("Da xoa id {}".format(id_del))
+#search data
+def student_search(data):
+    id_student_search = input("Hay nhap vao 'id' cua sinh vien can tra: ")
+    if any(hs["id"] == id_student_search for hs in data ):
+        for hs in data:
+            if hs["id"] == id_student_search:
+                hs_obj = Student.from_dict(hs)
+                hs_obj.showInfo()
+    else:
+        print("ID khong ton tai")
+#********************************************************
 
 
 while True:
-
-    id_menu = int(input('************MENU**************\n1:Nhap du lieu hoc sinh\n2:xoa du lieu cua hoc sinh\n3:Tra cuu du lieu cua 1 hoc sinh\n4:Thoat\nLua Chon Chuc Nang:'))
+    data = read_data()
+    id_menu = int(input('************MENU**************\n1:Nhap du lieu hoc sinh\n2:Xoa du lieu cua hoc sinh\n3:Tra cuu du lieu cua 1 hoc sinh\n4:In toan bo ho so\n5:Thoat\nLua Chon Chuc Nang:'))
+    print("-" * 200)
     if id_menu == 1:
-        read_data()
         input_data()
-    # elif id_menu == 2:
+    elif id_menu == 2:
+        del_data()
     elif id_menu == 3:
-        student_search()
+        student_search(data)
     elif id_menu == 4:
+        for sv in data:
+            sv_obj = Student.from_dict(sv)
+            sv_obj.showInfo()
+            print("*"*90)
+    elif id_menu == 5:
         break
               
 
