@@ -1,0 +1,16 @@
+[
+    {
+        "id": "id123456",
+        "name": "VietAnh1",
+        "score": 10,
+        "age": 26,
+        "class": "C"
+    },
+    {
+        "id": "id1234567",
+        "name": "VietAnh2",
+        "score": 10,
+        "age": 26,
+        "class": "C"
+    }
+]
