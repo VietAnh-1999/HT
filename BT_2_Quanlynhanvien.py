@@ -16,10 +16,10 @@ class NhanVien:
         return self.__ma_nhan_vien
 
     # phuong thuc
-    def inputInfo(self,danh_sach_nv):
+    def inputInfo(self,data):
             while True:
                 ma = input("Nhap vao ma nhan vien:  ")
-                if any(nv.get_ma_nhan_vien () == ma for nv in danh_sach_nv ):
+                if any(nv["ma_nhan_vien"] == ma for nv in data):
                         print("Max nhan vien da ton tai! Vui long nhap lai ma nhan vien khac")
                 else:
                     self.__ma_nhan_vien = ma
@@ -55,7 +55,7 @@ class NhanVien:
         print("Lương:", self.luong)
         print("Giờ làm:", self.gio_lam)
         print("Thưởng:", self.tinhThuong())
-
+# ham tinh thuong
     def tinhThuong(self):
         if self.gio_lam >= 200:
             return self.luong * 0.2
@@ -63,6 +63,7 @@ class NhanVien:
             return self.luong * 0.1
         else:
             return 0
+        
     # tra ve chuoi
     def to_string(self):
         return f"{self.__ma_nhan_vien},{self.ten},{self.tuoi},{self.dia_chi},{self.luong},{self.gio_lam},{self.tinhThuong()}"
@@ -107,28 +108,29 @@ def doc_Json():
 
 
 #Tuy xuat thong tin nhan vien
-# def truyxuatthongtin_NV():
-#     print("nhap '-1' de thoat")
-#     print("*"*60)
-#     while True:
-#         ma_nv = input("Nhap vao ma nhan vien can truy xuat: ")
-#         if any(nv.get_ma_nhan_vien () == ma_nv for nv in danh_sach_nv ):
-#             for nv in danh_sach_nv:
-#                 if nv.get_ma_nhan_vien() == ma_nv:
-#                     nv.printInfo()
-#                     print("*"*60)
-#         elif ma_nv == '-1':
-#             break
-#         else:
-#             print("Ma khong ton tai!")
+def truyxuatthongtin_NV():
+    print("nhap '-1' de thoat")
+    print("*"*60)
+    while True:
+        ma_nv = input("Nhap vao ma nhan vien can truy xuat: ")
+        if any(nv["ma_nhan_vien"] == ma_nv for nv in data ):
+            for nv in data:
+                if nv["ma_nhan_vien"] == ma_nv:
+                    nv_obj = NhanVien.from_dict(nv)
+                    nv_obj.printInfo()
+                    print("*"*60)
+        elif ma_nv == '-1':
+            break
+        else:
+            print("Ma khong ton tai!")
 
 
-data=doc_Json()
+data= doc_Json()
 while True:
     i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
     if i == "In":
         NhapNhanVien = NhanVien()
-        NhapNhanVien.inputInfo(danh_sach_nv)
+        NhapNhanVien.inputInfo(data)
         danh_sach_nv.append(NhapNhanVien)
         NhapNhanVien.printInfo()
         # Viet du lieu vao file txt
@@ -140,7 +142,7 @@ while True:
 
     elif i == "Exit":
         break
-    # elif i== 'A':
-    #     truyxuatthongtin_NV()
+    elif i== 'A':
+        truyxuatthongtin_NV()
         
 

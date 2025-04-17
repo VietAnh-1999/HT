@@ -6,5 +6,29 @@
         "dia_chi": "HANAM",
         "luong": 9999926562.0,
         "gio_lam": 30.0
+    },
+    {
+        "ma_nhan_vien": "Va0001",
+        "ten": "fsd",
+        "tuoi": 24,
+        "dia_chi": "31",
+        "luong": 313.0,
+        "gio_lam": 13.0
+    },
+    {
+        "ma_nhan_vien": "V002",
+        "ten": "dfgh",
+        "tuoi": 23,
+        "dia_chi": "323",
+        "luong": 32.0,
+        "gio_lam": 323.0
+    },
+    {
+        "ma_nhan_vien": "Va002",
+        "ten": "Viet anh",
+        "tuoi": 26,
+        "dia_chi": "HA",
+        "luong": 563231351321321.0,
+        "gio_lam": 65656.0
     }
 ]
