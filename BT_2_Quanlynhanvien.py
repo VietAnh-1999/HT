@@ -96,7 +96,7 @@ NhapNhanVien = NhanVien()
 #Doc du lieu tu file
 def doc_Json():
     try:
-        with open("nhanvien.json","r", encoding= "utf-8") as f:
+        with open(r"D:\5.HT\HT\nhanvien.json","r", encoding= "utf-8") as f:
             data = json.load(f)
             print(data)
         print("da doc danh sach tu file json")
@@ -125,7 +125,7 @@ def truyxuatthongtin_NV():
             print("Ma khong ton tai!")
 
 
-data= doc_Json()
+data = doc_Json()
 while True:
     i = input("Nhap vao 'In' de nhap thong tin nhan vien\nNhap vao 'Exit' de thoat ")
     if i == "In":
@@ -142,6 +142,7 @@ while True:
 
     elif i == "Exit":
         break
+    
     elif i== 'A':
         truyxuatthongtin_NV()
         
