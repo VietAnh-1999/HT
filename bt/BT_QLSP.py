@@ -122,10 +122,8 @@ def read_data_json():
             return data           
     except FileNotFoundError:
         print("file khong to tai")
-        return None
     except json.JSONDecodeError:
         print("file json rong hoac khong ton tai")
-        return None
 Shop_1 = Shop()
 data = read_data_json()
 #**********************************************************
