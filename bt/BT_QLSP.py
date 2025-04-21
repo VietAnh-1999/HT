@@ -69,10 +69,32 @@ class Shop:
         data.append(pr.to_dict())
         with open("product.json","w",encoding="utf-8")as f:
             json.dump(data,f,indent=4)
+    @staticmethod
+    def SearchProduct(data):
+        try:
+            print("Nhap vao khoang gia can tra cuu")
+            Prod_search_1 = int(input("Nhap vao gioi han gia tren: "))
+            Prod_search_2 = int(input("Nhap vao gioi han gia duoi: "))
+            if any(dt for dt in data if Prod_search_2 < dt["price"] < Prod_search_1):
+                data_search = [dt for dt in data if Prod_search_2 < dt["price"] < Prod_search_1]
+                Dict_search = product.from_dict(data_search)
+                print(Dict_search)
+            else:
+                print("Khong ton tai san pham trong khoang gia")
+        except:
+            print("Nhap sai dinh dang")
 
+    @staticmethod
+    def removeProduct(data):
+        prod_del = input("Nhap vao ten san pham can xoa: ")
+        if any(dt for dt in data if dt["name"] == prod_del):
+            data_new = [dt for dt in data if dt["name"] != prod_del]
+            with open("product.json","w",encoding="utf-8") as f:
+                json.dump(data_new,f,indent= 4)
+                print("Da xoa san pham {} ra khoi danh sach".format(prod_del))
+        else:
+            print("San pham khong ton tai trong danh sach")
 
-        
-#    def removeProduct():
     
 
 
@@ -81,16 +103,40 @@ class Shop:
 data=[]
 def read_data_json():
         try:
-            with open ("product.json","r",encoding="utf-8")as f:
+            with open("product.json","r",encoding="utf-8") as f:
                 data = json.load(f)
                 return data           
         except FileNotFoundError:
             print("file khong to tai")
+            return None
         except json.JSONDecodeError:
             print("file json rong hoac khong ton tai")
-read_data_json()
-print(data)
+            return None
+data = read_data_json()
 Shop_1 = Shop()
-Shop_1.addProduct(data)
-    
+
+while True:
+    print("1: Add new product")
+    print("2: Remove product")
+    print("3: Search product")
+    print("5: Exit")
+    while True:
+        try:
+            key = int(input("Nhap lua chon: "))
+            if 0 < key < 6 :
+                break
+            else:
+                print("Nhap lua chon khong dung. Vui long nhap lai!")
+        except:
+            print(" Sai dinh dang. Vui long nhap lai!")
+
+    if key == 1: 
+        Shop_1.addProduct(data)
+    elif key == 2:
+        Shop.removeProduct(data)
+    elif key == 3:
+        Shop.SearchProduct(data)
+    elif key == 5:
+        break
+        
         
