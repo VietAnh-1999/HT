@@ -10,7 +10,7 @@ class product:
     def get_namePR(self):
         return self.name_pr
     
-    def addProduct(self):
+    def addProduct_1(self):
         self.name_pr = input("Nhap vao ten cua san pham:  ")
         self.desciption = input("Nhap vao mo ta cho san pham {} :  ".format(self.name_pr))
         while True:
@@ -36,6 +36,7 @@ class product:
                     print("Nhap danh gia khong thanh cong")
             except:
                 print("Dinh dang khong dung! Vui long nhap lai")
+
     def viewInfo(self):
         print("name: {}".format(self.name_pr))
         print("description: {}".format(self.desciption))
@@ -63,22 +64,33 @@ class Shop:
 
     def addProduct(self,data):
         pr = product()
-        pr.addProduct()
+        pr.addProduct_1()
         self.ProductList.append(pr)
         print(self.ProductList)
         data.append(pr.to_dict())
         with open("product.json","w",encoding="utf-8")as f:
             json.dump(data,f,indent=4)
+
+    @staticmethod
+    def sort_price(data):
+        spr_sort_price = dict(sorted(data.items(),key = lambda item: item[1]["price"]))
+        print(spr_sort_price)
+        
+
+
     @staticmethod
     def SearchProduct(data):
         try:
             print("Nhap vao khoang gia can tra cuu")
             Prod_search_1 = int(input("Nhap vao gioi han gia tren: "))
             Prod_search_2 = int(input("Nhap vao gioi han gia duoi: "))
+            print("*"*60)
             if any(dt for dt in data if Prod_search_2 < dt["price"] < Prod_search_1):
                 data_search = [dt for dt in data if Prod_search_2 < dt["price"] < Prod_search_1]
-                Dict_search = product.from_dict(data_search)
-                print(Dict_search)
+                for spr in data_search:
+                    sprd = product.from_dict(spr)
+                    sprd.viewInfo()
+                    print("*"*60)
             else:
                 print("Khong ton tai san pham trong khoang gia")
         except:
@@ -102,23 +114,30 @@ class Shop:
 #*******************************************************************
 data=[]
 def read_data_json():
-        try:
-            with open("product.json","r",encoding="utf-8") as f:
-                data = json.load(f)
-                return data           
-        except FileNotFoundError:
-            print("file khong to tai")
-            return None
-        except json.JSONDecodeError:
-            print("file json rong hoac khong ton tai")
-            return None
-data = read_data_json()
+    try:
+        with open("product.json","r",encoding="utf-8") as f:
+            data = json.load(f)
+            return data           
+    except FileNotFoundError:
+        print("file khong to tai")
+        return None
+    except json.JSONDecodeError:
+        print("file json rong hoac khong ton tai")
+        return None
 Shop_1 = Shop()
-
+data = read_data_json()
+#**********************************************************
+for sp in data:
+    prd = product.from_dict(sp)
+    print(prd)
+    prd.viewInfo()
+    print("*"*50)
+#**********************************************************
 while True:
     print("1: Add new product")
     print("2: Remove product")
     print("3: Search product")
+    print("4: SortProduct")
     print("5: Exit")
     while True:
         try:
@@ -129,13 +148,15 @@ while True:
                 print("Nhap lua chon khong dung. Vui long nhap lai!")
         except:
             print(" Sai dinh dang. Vui long nhap lai!")
-
+#***************************************************************************
     if key == 1: 
         Shop_1.addProduct(data)
     elif key == 2:
         Shop.removeProduct(data)
     elif key == 3:
         Shop.SearchProduct(data)
+    elif key == 4:
+        Shop_1.sort_price(data)
     elif key == 5:
         break
         
