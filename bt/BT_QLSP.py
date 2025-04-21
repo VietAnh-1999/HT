@@ -84,15 +84,17 @@ class Shop:
             print("Nhap vao khoang gia can tra cuu")
             Prod_search_1 = int(input("Nhap vao gioi han gia tren: "))
             Prod_search_2 = int(input("Nhap vao gioi han gia duoi: "))
-            print("*"*60)
+            print("Danh sach  product  loc duoc")
+            print("-"*60)
             if any(dt for dt in data if Prod_search_2 < dt["price"] < Prod_search_1):
                 data_search = [dt for dt in data if Prod_search_2 < dt["price"] < Prod_search_1]
                 for spr in data_search:
                     sprd = product.from_dict(spr)
                     sprd.viewInfo()
-                    print("*"*60)
+                    print("*"*20)
             else:
                 print("Khong ton tai san pham trong khoang gia")
+            print("-"*60)
         except:
             print("Nhap sai dinh dang")
 
@@ -101,7 +103,7 @@ class Shop:
         prod_del = input("Nhap vao ten san pham can xoa: ")
         if any(dt for dt in data if dt["name"] == prod_del):
             data_new = [dt for dt in data if dt["name"] != prod_del]
-            with open("product.json","w",encoding="utf-8") as f:
+            with open(r"D:\5.HT\HT\bt\product.json","w",encoding="utf-8") as f:
                 json.dump(data_new,f,indent= 4)
                 print("Da xoa san pham {} ra khoi danh sach".format(prod_del))
         else:
@@ -115,7 +117,7 @@ class Shop:
 data=[]
 def read_data_json():
     try:
-        with open("product.json","r",encoding="utf-8") as f:
+        with open(r"D:\5.HT\HT\bt\product.json","r",encoding="utf-8") as f:
             data = json.load(f)
             return data           
     except FileNotFoundError:
@@ -129,7 +131,6 @@ data = read_data_json()
 #**********************************************************
 for sp in data:
     prd = product.from_dict(sp)
-    print(prd)
     prd.viewInfo()
     print("*"*50)
 #**********************************************************
