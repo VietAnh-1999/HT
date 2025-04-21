@@ -147,7 +147,7 @@ while True:
                 print("Nhap lua chon khong dung. Vui long nhap lai!")
         except:
             print(" Sai dinh dang. Vui long nhap lai!")
-#***************************************************************************
+#***********************************************************
     if key == 1: 
         Shop_1.addProduct(data)
     elif key == 2:
