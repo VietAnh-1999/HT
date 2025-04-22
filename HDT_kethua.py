@@ -3,6 +3,9 @@ class Animal:
     def __init__(self,Type,name):
         self.Type = Type
         self.name = name
+    def printMe(self):
+        print("TYPE: {}".format(self.Type))
+        print("NAME: {}".format(self.name))
     def eat(self):
         print("an")
     
@@ -19,3 +22,4 @@ class Dog(Animal):
         
 dog1 = Dog("Muc")
 dog1.eat()
+dog1.printMe()
