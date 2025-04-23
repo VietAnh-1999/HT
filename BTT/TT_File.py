@@ -13,6 +13,32 @@ t = cursor.fetchall()
 # connection.close()
 print(t)
 #*********************************************
+def print_item(t):
+    for item in t:
+        print(item)
+print_item(t)
+# for item in t:
+#     if item[0]==1:
+#         name = item[1]
+#         diem = item[2]
+#         print(name)
+#         print(diem)
+#     else:
+#         print("khong ton tai")
+found = False  # Biến kiểm tra đã tìm thấy chưa
+
+for item in t:
+    if item[0] == 15:  # thay bằng id bạn muốn tìm
+        name = item[1]
+        diem = item[2]
+        print("Tên:", name)
+        print("Điểm:", diem)
+        found = True
+        break
+
+if not found:
+    print("Không tồn tại")
+
 bien1 = input("Nhap vao gia tri: ")
 bien2 = input("Nhap vao gia tri: ")
 # string = 'INSERT INTO table1(name) VAlUES ("' + bien1 + '")'
