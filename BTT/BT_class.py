@@ -18,5 +18,9 @@ class Rectangle:
 
 # main
 hinh1 = Rectangle(20,60)
+hinh2 = Rectangle(50,65)
 print(hinh1.chuvi())
+print(hinh2.chuvi())
 print(hinh1.dientich())
+
+print(hinh2.dientich())
