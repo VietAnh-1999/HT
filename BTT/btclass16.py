@@ -40,9 +40,7 @@ class FlashLamp:
         print("Den tat *************")
 
 def main():
-
     pin = battery()
-
     nhayden = FlashLamp()
     pin.setEnergy()
     nhayden.setbattery(pin.energy)
@@ -58,9 +56,6 @@ def main():
             nhayden.setbattery(pin.energy)
 
     print("Phan tram pin hien tai la: {0}".format(nhayden.battery))
-
-    
-    
 
 if __name__ == "__main__":
     main()
