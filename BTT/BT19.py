@@ -49,22 +49,22 @@ def write_json():
         json.dump(data,f,indent=4)
         print("Da xuat du lieu ra file json")
 
-# def read_json():
-#     try:
-#         with open("dulieuNH.json","r",encoding= "utf-8") as f:
-#             data = json.load(f)
-#             return data
-#         print("Da doc du lieu ra file json")
-#     except FileNotFoundError:
-#         print("Khong tim duoc file hoac file khong ton tai")
-#     except json.JSONDecodeError:
-#         print("file loi")      
+def read_json():
+    try:
+        with open("dulieuNH.json","r",encoding= "utf-8") as f:
+            data = json.load(f)
+            return data
+        print("Da doc du lieu ra file json")
+    except FileNotFoundError:
+        print("Khong tim duoc file hoac file khong ton tai")
+    except json.JSONDecodeError:
+        print("file loi")      
 
 def main():
     bank = Bank()
     N = int(input("Nhap vao so tai khoan can tao: "))
     i = 0
-   # read_json()
+    data = read_json()
     while i < N:
         try:
             acc_num = input("Nhap vao acc_number(6 so): ")
