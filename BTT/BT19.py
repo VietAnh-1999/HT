@@ -37,19 +37,19 @@ class BankAccount:
 class Bank(BankAccount):
     def __init__(self):
         self.List_Bankaccount = []
-        BankAccount.__init__()
+        
 
     def addAccount(self,account):
 
         self.List_Bankaccount.append(account)
 
-    def search(self,accountNumber):
-        for acc in self.List_Bankaccount:
-            if acc.accountNumber == accountNumber:
-                 print(accountNumber)
-        else:
-            print("Tai khoan khong ton tai")
-    #def getTotal(self):
+    # def search(self,accountNumber):
+    #     for acc in self.List_Bankaccount:
+    #         if acc.accountNumber == accountNumber:
+    #              print(accountNumber)
+    #     else:
+    #         print("Tai khoan khong ton tai")
+    # #def getTotal(self):
 
 
 def write_json(data):
