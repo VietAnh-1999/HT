@@ -1,0 +1,38 @@
+[
+    {
+        "MaGiaoDich": "VA0112",
+        "NgayGiaoDich": "2024-03-12 00:00:00",
+        "DonGia": 211314,
+        "SoLuong": 31,
+        "Loai": "24K",
+        "Thanhtienmua": 6550734,
+        "Thanhtienban": "0"
+    },
+    {
+        "MaGiaoDich": "VA03",
+        "NgayGiaoDich": "2025-05-12 00:00:00",
+        "DonGia": 4654313,
+        "SoLuong": 32,
+        "Loai": "24K",
+        "Thanhtienmua": "0",
+        "Thanhtienban": 156384916.8
+    },
+    {
+        "MaGiaoDich": "VA234234",
+        "NgayGiaoDich": "2024-03-21 00:00:00",
+        "DonGia": 12000000,
+        "SoLuong": 36,
+        "Loai": "24K",
+        "Thanhtienmua": 432000000,
+        "Thanhtienban": "0"
+    },
+    {
+        "MaGiaoDich": "VAkhkdj",
+        "NgayGiaoDich": "2024-03-13 00:00:00",
+        "DonGia": 4556464,
+        "SoLuong": 32,
+        "Loai": "24K",
+        "Thanhtienmua": 145806848,
+        "Thanhtienban": "0"
+    }
+]

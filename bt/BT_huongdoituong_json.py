@@ -126,30 +126,31 @@ def student_search(data):
 
 
 while True:
+    key =''
     data = read_data()
     id_menu = int(input('************MENU**************\n1:Nhap du lieu hoc sinh\n2:Xoa du lieu cua hoc sinh\n3:Tra cuu du lieu cua 1 hoc sinh\n4:In toan bo ho so\n5:Thoat\nLua Chon Chuc Nang:'))
     print("-" * 200)
     if id_menu == 1:
         while True:
-            key = input("Nhap vao 'E' de thoat")
             if key == 'E':
                 break
             else:
                 input_data()
+            key = input("Nhap vao 'E' de thoat")
     elif id_menu == 2:
         while True:
-            key = input("Nhap vao 'E' de thoat")
             if key == 'E':
                 break
             else:
                 del_data()
-    elif id_menu == 3:
-        while True:
             key = input("Nhap vao 'E' de thoat")
+    elif id_menu == 3:
+        while True:  
             if key == 'E':
                 break
             else:
                 student_search(data)
+            key = input("Nhap vao 'E' de thoat")
     elif id_menu == 4:
         for sv in data:
             sv_obj = Student.from_dict(sv)
